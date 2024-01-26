@@ -1,0 +1,32 @@
+{# templates/article/article_form.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{% if edit_mode %}Edit{% else %}Create{% endif %} Article{% endblock %}
+
+{% block body %}
+    <h2>{% if edit_mode %}Edit{% else %}Create{% endif %} Article</h2>
+    
+    {{ form_start(articleForm) }}
+        {{ form_row(articleForm.title, {
+            'attr': {'class': 'form-control'},
+            'label': 'Title'
+        }) }}
+        {{ form_row(articleForm.body, {
+            'attr': {'class': 'form-control'},
+            'label': 'Content'
+        }) }}
+        {{ form_row(articleForm.publicationDate, {
+            'attr': {'class': 'form-control'},
+            'label': 'Publication Date'
+        }) }}
+        {{ form_row(articleForm.image, {
+            'attr': {'class': 'form-control'},
+            'label': 'Article Image'
+        }) }}
+        {{ form_row(articleForm.tags, {
+            'attr': {'class': 'form-control'},
+            'label': 'Tags'
+        }) }}
+        <button type="submit" class="btn btn-success">{% if edit_mode %}Update{% else %}Create{% endif %}</button>
+    {{ form_end(articleForm) }}
+{% endblock %}

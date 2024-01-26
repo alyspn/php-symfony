@@ -1,0 +1,36 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome to the News Site{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('styles/style.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            
+            <a href="{{ path('article_index') }}">Home</a>
+            {% if app.user %}
+                <a href="{{ path('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ path('login') }}">Login</a>
+                <a href="{{ path('user_register') }}">Register</a>
+            {% endif %}
+            {% if is_granted('ROLE_EDITOR') or is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('article_new') }}">Write a new article</a>
+                <a href="{{ path('editor_dashboard') }}">Editor Dashboard</a>
+
+
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="container">
+        {% block body %}{% endblock %}
+    </div>
+    
+    {% block javascripts %}{% endblock %}
+</body>
+</html>

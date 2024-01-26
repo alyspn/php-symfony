@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Archive Article{% endblock %}
+
+{% block body %}
+    <h2>Archive Article</h2>
+    
+    <form action="{{ path('editor_archive_article', {'id': article.id}) }}" method="post">
+        <p>Are you sure you want to archive "{{ article.title }}"?</p>
+        
+        <input type="hidden" name="_token" value="{{ csrf_token('archive' ~ article.id) }}">
+        <button type="submit" class="btn btn-warning">Archive</button>
+        <a href="{{ path('editor_dashboard') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

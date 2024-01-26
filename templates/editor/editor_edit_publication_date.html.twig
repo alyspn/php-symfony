@@ -1,0 +1,16 @@
+{# templates/editor/editor_edit_publication_date.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Publication Date{% endblock %}
+
+{% block body %}
+    <h2>Edit Publication Date for: {{ article.title }}</h2>
+    
+    {{ form_start(publicationDateForm) }}
+        {{ form_row(publicationDateForm.publicationDate, {
+            'attr': {'class': 'form-control'},
+            'label': 'Publication Date'
+        }) }}
+        <button type="submit" class="btn btn-primary">Save Publication Date</button>
+    {{ form_end(publicationDateForm) }}
+{% endblock %}

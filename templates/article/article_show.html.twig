@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+    <div class="article-detail">
+        <h2>{{ article.title }}</h2>
+
+        <p>{{ article.body }}</p>
+        <p>Published on: {{ article.publicationDate|date('Y-m-d') }}</p>
+        <div class="article-tags">
+            {% for tag in article.tags %}
+                <span class="badge badge-info">{{ tag.name }}</span>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

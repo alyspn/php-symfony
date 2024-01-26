@@ -1,0 +1,16 @@
+{# templates/article/article_new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Create New Article{% endblock %}
+
+{% block body %}
+    <h2>Create New Article</h2>
+    
+    {{ form_start(articleForm) }}
+        {{ form_row(articleForm.title) }}
+        {{ form_row(articleForm.body) }}
+        {{ form_row(articleForm.tagList, {'label': 'Tags (comma separated)'}) }} {# Make sure the field name matches your form #}
+        {{ form_row(articleForm.publicationDate) }} {# Ensure this form field is included if necessary #}
+        <button type="submit" class="btn btn-success">Create</button>
+    {{ form_end(articleForm) }}
+{% endblock %}

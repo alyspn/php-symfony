@@ -1,0 +1,47 @@
+{# templates/editor/editor_dashboard.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Editor Dashboard{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_EDITOR') or is_granted('ROLE_ADMIN') %}
+    <h2>Editor Dashboard</h2>
+    
+    <h3>Articles Pending Validation</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Publication Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.title }}</td>
+                    <td>{{ article.publicationDate|date('Y-m-d') }}</td>
+                    <td>
+                        
+                        <form action="{{ path('editor_validate_article', {'id': article.id}) }}" method="post" style="display: inline-block;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('validate' ~ article.id) }}">
+                            <button type="submit" class="btn btn-success">Validate</button>
+                        </form>
+                        
+                        
+                        <form action="{{ path('editor_archive_article', {'id': article.id}) }}" method="post" style="display: inline-block;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('archive' ~ article.id) }}">
+                            <button type="submit" class="btn btn-warning">Archive</button>
+                        </form>
+                        
+                        
+                        <a href="{{ path('editor_edit_article', {'id': article.id}) }}" class="btn btn-primary">Edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>You do not have permission to view this content.</p>
+    {% endif %}
+{% endblock %}

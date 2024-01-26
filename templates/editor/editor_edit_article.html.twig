@@ -1,0 +1,33 @@
+{# templates/editor/editor_edit_article.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Article{% endblock %}
+
+{% block body %}
+    <h2>Edit Article: {{ article.title }}</h2>
+    
+    {{ form_start(editForm) }}
+        {{ form_row(editForm.title, {
+            'attr': {'class': 'form-control'},
+            'label': 'Title'
+        }) }}
+        {{ form_row(editForm.body, {
+            'attr': {'class': 'form-control'},
+            'label': 'Content'
+        }) }}
+        {{ form_row(editForm.publicationDate, {
+            'attr': {'class': 'form-control'},
+            'label': 'Publication Date'
+        }) }}
+
+
+        
+        {{ form_row(editForm.tagList, {
+            'attr': {'class': 'form-control', 'placeholder': 'Enter tags, separated by commas'},
+            'label': 'Tags (comma separated)',
+            'required': false
+        }) }}
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    {{ form_end(editForm) }}
+{% endblock %}

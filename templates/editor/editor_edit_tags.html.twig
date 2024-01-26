@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Article Tags{% endblock %}
+
+{% block body %}
+    <h2>Edit Tags for: {{ article.title }}</h2>
+    
+    {{ form_start(tagForm) }}
+        {{ form_row(tagForm.tags, {
+            'attr': {'class': 'form-control'},
+            'label': 'Tags'
+        }) }}
+        <button type="submit" class="btn btn-primary">Save Tags</button>
+    {{ form_end(tagForm) }}
+{% endblock %}
